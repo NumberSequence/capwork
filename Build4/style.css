@@ -193,6 +193,7 @@ width:100vw; overflow:hidden;
   opacity: 0;
   transition: opacity 1s linear;
   transform: opacity 1s linear;
+  pointer-events: none;
 }
 
 
@@ -204,11 +205,21 @@ width:100vw; overflow:hidden;
   width: 100vw;
   height: 100vh;
   position:absolute;
+  position: relative;
+  overflow: hidden;
   display: flex;
   margin:auto auto;
   opacity: 1;
   transform: opacity 1s linear;
+   /* background-image: radial-gradient(farthest-side, #9198e500,#9198e5, #778899,  #9198e500); */
+  /* background: linear-gradient(#C7D3DC,#5B798E);    */
+  /* background-size:cover; */
+  transition: transform 10s linear;
+/*   background-position: center center;
+  background-repeat: no-repeat; */
+  transform:scale(.2); 
 }
+
 
 
 /*Blinking Start*/
@@ -248,6 +259,14 @@ h3 {
   font-weight: normal;
   text-align: center;}
 
+  h4 {
+    font-family:'Yu Gothic';
+    font-size: 20px;
+    text-shadow: 0 0 5px #ffffff;
+    font-style:normal;
+    font-weight: bolder;
+    text-align: center;}
+  
 
 .selection {
     display: inline-block;
@@ -424,11 +443,14 @@ width:auto;
   }
   
 #mapcont{overflow:visible !important;
+  font-size:16px;
+  
 }
 
   #map {
     position: relative;
-    margin:auto;
+    margin: 75px auto auto;
+   
     height: 80vh;
     width: 60vw;
     z-index: 1;
@@ -438,6 +460,8 @@ width:auto;
 #mapcontslider{
   min-width: 60vw;
   overflow:visible !important;
+  top:20px;
+  position:relative;
 }
 
 .ui-widget-header {
@@ -455,6 +479,7 @@ width:auto;
 .slider.leaflet-control{
  background:none;
  width:20% !important;
+ height: 200% !important;
  position:relative;
  top:-0px;
  overflow:visible;
@@ -498,7 +523,7 @@ display:none
   font-weight: bold;
   color: black;
   text-shadow: 0px 0px 5px white;
-  font-size: 1em;
+  font-size: 16px !important;
   text-align:center;
  margin:auto;
  display:inline-block;
