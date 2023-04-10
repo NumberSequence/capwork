@@ -9,24 +9,28 @@ history.scrollRestoration = "manual";
 //START
 //PAGE
 //WAIT
+
 const myPreloader = document.querySelector(".preloader");
 const mainstuff = document.querySelector(".postload");
 const thebody = document.querySelector("body");
+myPreloader.style.transform = "scale(1)";
 const fadeOutEffect = setInterval(() => {
   if (!myPreloader.style.opacity) {
     myPreloader.style.opacity = 1;
-
+    //myPreloader.style.setProperty("background-size", "100vw 100vh");
     //  mainstuff.style.opacity = 0;
   }
   if (myPreloader.style.opacity > 0) {
     myPreloader.style.opacity -= 0.1;
-    mainstuff.style.visibility = "visible";
+    mainstuff.style.display = "in";
     //mainstuff.style.opacity += 0.1;
   } else {
     clearInterval(fadeOutEffect);
-    myPreloader.style.display = "none";
+    //myPreloader.style.display = "none";
+    myPreloader.remove();
     mainstuff.style.opacity = 1;
     thebody.style.setProperty("overflow-y", "unset");
+    mainstuff.style.pointerEvents = "auto";
   }
 }, 300);
 
@@ -233,21 +237,6 @@ controlLayers = L.control
   })
   .addTo(map);
 */
-
-//START NO-UI SLIDER 1
-//var slider = document.getElementById("slider");
-/*
-var slidervar = document.getElementById("slider");
-noUiSlider.create(slidervar, {
-  connect: true,
-  start: [1, 35676000],
-  range: {
-    min: 1,
-    max: 35676000,
-  },
-});
-*/
-//END NO-UI SLIDER 1
 
 // BASE MAP
 
@@ -488,14 +477,6 @@ observer.observe(target, config);
 //MAP
 
 //console.log(document.getElementById("mapcont"));
-
-//START
-//WORD
-//HOVER
-var introhover = document.getElementById("introwords");
-//END
-//WORD
-//HOVER
 
 //START
 //VIDEO
