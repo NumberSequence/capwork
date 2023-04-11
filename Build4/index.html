@@ -154,8 +154,9 @@ this is not what the public expects.
   <div id="exvids">
       <video id="vid1" src="porch.mp4" controls></video><video id = "vid2" src="sidewalk.mp4" controls></video>
       </div>
-      <P class="text">
+      <P class="text" style="text-align:center;">
         The above shootings don't appear in the dataset. 
+       <del>
         <br>Nor does 
         <a href="https://nypost.com/2022/07/29/nyc-man-open-fires-on-cop-in-the-bronx-police-sources-say/">
           the incident</a> where an individual began <i>shooting</i> 
@@ -164,6 +165,7 @@ this is not what the public expects.
           and chased one of the <i>shooters</i>. 
           That <i>shooter</i> turned and <i>shot</i> at the detective during the pursuit.
           <br>As far as shootings go, it's meta... but it's not data.
+          </del>
       </p>
 <br><br>
 <h4>
@@ -211,6 +213,15 @@ similar duplicate keys are counted as one incident."
         <img src="recycle3.png" class="arrow">
 
           <p class="text">
+           
+          Exploring the dataset reveals that there are hundreds of records that 
+          change. These changes aren't updated. Instead, they're appended. 
+          According to footnote 3,
+          each row represents a victim. 
+          The unmentioned caveat is that each victim 
+          may be represented more than once.
+          
+           can only be revealed after exploring the data and taking
             <del>The footnotes contradict (or at the very least undermine) the dataset's description.
             
             But after further exploration, the data itself may end up contradicting the footnotes.
@@ -239,10 +250,10 @@ similar duplicate keys are counted as one incident."
         </p>
 <br><br>
  <!-- START TABLEAU -->
- <div class='tableauPlaceholder' id='viz1679339369615' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 (2) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CapTab2&#47;Dashboard12&#47;1_rss.png' style='border: none' /></a>
+ <div class='tableauPlaceholder' id='viz1681186084968' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 (2) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CapTab4&#47;Dashboard12&#47;1_rss.png' style='border: none' /></a>
  </noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CapTab2&#47;Dashboard12' /><param name='tabs' value='no' /><param name='toolbar' value='yes' />
    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CapTab2&#47;Dashboard12&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' />
-   <param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1679339369615');                    
+   <param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1681186084968');                    
    var vizElement = divElement.getElementsByTagName('object')[0];                    
    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='60vw'/* '1000px' */;vizElement.style.height='827px';} 
    else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='60vw'/*'1000px'*/;vizElement.style.height='827px';} 
@@ -251,7 +262,7 @@ similar duplicate keys are counted as one incident."
     scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
     vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
     <!-- END TABLEAU -->
-<br><br>
+    <br><br>
 <del>
   
         <p class="text">
