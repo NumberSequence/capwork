@@ -7,7 +7,7 @@ body {
     font-family:Cambria;
  */
   font-family:'Lucida Sans'; 
-  font-size:0;
+  font-size:25px;
 /*  font-family:'Yu Gothic'; */
     overflow-x:hidden;
     overflow-y:hidden;
@@ -43,6 +43,47 @@ p.text {
   box-shadow: 0px 0px 25px 25px #9ab0cacc;
 }
 
+p.short {
+  width:60vw;
+  margin: 6vh auto 6vh auto;
+  font-weight: 400; 
+  /* background-color:rgba(119, 136, 153, 0.582); */
+  /* background-color:#7788997C; */
+  background-color:#9ab0cacc;
+  padding:0px;
+  border-radius: 15px;
+  /* box-shadow: 0px 0px 25px 25px rgba(119, 136, 153, 0.582); */
+  /* box-shadow: 0px 0px 25px 25px #7788997C; */
+  box-shadow: 0px 0px 25px 10px #9ab0cacc;
+}
+
+.statement {
+  min-width:60vw;
+  font-weight: 400; 
+  font-size: 25px;
+  /* background-color:rgba(119, 136, 153, 0.582); */
+  /* background-color:#7788997C; */
+  /* background-color:#9ab0cacc; */
+  padding:0px;
+  margin:auto;
+  margin: 6vh auto 6vh auto;
+  position:relative;
+  border-radius: 15px;
+  /* box-shadow: 0px 0px 25px 25px rgba(119, 136, 153, 0.582); */
+  /* box-shadow: 0px 0px 25px 25px #7788997C; */
+  /* box-shadow: 0px 0px 25px 25px #9ab0cacc; */
+  display:flex;
+  justify-content: center;
+align-items: center;
+text-align:center; 
+}
+
+.stated{
+  background-color:#9ab0cacc;
+  box-shadow: 0px 0px 25px 25px #9ab0cacc;
+}
+
+
 .arrow{
   height:50% !important;
 }
@@ -56,6 +97,40 @@ img{
   margin:auto;
 }
 
+#recycleall{
+  position:relative;
+  /* padding-left:-50%; */
+/* transform: scaleX(-1); */
+}
+
+#spindiv{
+  position:relative;
+  top:0;
+  left:0;
+  /* width: 0; height: 1; */
+ 
+  overflow:visible;
+  margin:auto;
+
+  display:flex;
+justify-content: center;
+align-items: center; 
+}
+
+#spin {
+  animation: rotation 10s linear 0s infinite;
+  position:absolute;
+  
+  scale:.8;
+  
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(-360deg)
+  }
+}
+
 #nycod{
   display:block;
   margin:auto;
@@ -67,13 +142,13 @@ img{
 #nycod {
   pointer-events: none !important;
 }
-
+/* 
 .collapse-toggle.more.btn.btn-link{
 color:red !important;
 display:none !important;
 pointer-events:all !important;
 }
-
+ */
 .subbody {
   display:inline-block;
   width:100vw;
@@ -170,7 +245,7 @@ width:100vw; overflow:hidden;
 .sitemain {
   margin-left: 10%;
   margin-right: 10%;
-  overflow-x:hidden;
+  /* overflow-x:hidden; */
 }
 
 #cal-heatmap{
@@ -362,16 +437,19 @@ height:50vh;
 
 del{display:none;}
 
+
+
 .hoverable img.showme{
   visibility:hidden;
   position:fixed;
-  bottom:0px;
- margin-top:-20px;
+ 
+  left:0vw;
+top: 5vw;
   opacity:0;
   transition: opacity .5s; 
   z-index:9999;
-  height:40vh;
-  width:auto;
+
+  width:20vw;
   
   margin:auto;
   border-radius: 15px;
@@ -385,6 +463,9 @@ del{display:none;}
   box-shadow:none;
   /* box-shadow: 0px 0px 25px 25px rgba(119, 136, 153, 0.582) inset; */
 }
+
+
+
 
 .hoverable span.showme{
   font-weight: 100;
