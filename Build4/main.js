@@ -271,6 +271,18 @@ function MarkersFirstLoad() {
             feature.properties.Deaths == feature.properties.Victims ||
             feature.properties.Deaths > 3
           ) {
+            //remove above and use below after changing geojson source to:
+            //mass = victims + death >=4
+            //victims = count of murder false
+            //deaths = count of murder true
+            /*
+
+  if (feature.properties.Deaths + feature.properties.Victims >= 4) {
+          if (
+            max(feature.properties.Deaths, feature.properties.Victims) <= 4
+          )
+    */
+
             //if (!MurderOnly || (MurderOnly && ismurd)) {
             //return L.circleMarker(latlng, {
             return L.circle(latlng, {
