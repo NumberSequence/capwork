@@ -10,27 +10,27 @@ history.scrollRestoration = "manual";
 //PAGE
 //WAIT
 
-const myPreloader = document.querySelector(".preloader");
-const mainstuff = document.querySelector(".postload");
+const preloader = document.querySelector(".preloader");
+const postload = document.querySelector(".postload");
 const thebody = document.querySelector("body");
-myPreloader.style.transform = "scale(1)";
+preloader.style.transform = "scale(1)";
 const fadeOutEffect = setInterval(() => {
-  if (!myPreloader.style.opacity) {
-    myPreloader.style.opacity = 1;
-    //myPreloader.style.setProperty("background-size", "100vw 100vh");
-    //  mainstuff.style.opacity = 0;
+  if (!preloader.style.opacity) {
+    preloader.style.opacity = 1;
+    //preloader.style.setProperty("background-size", "100vw 100vh");
+    //  postload.style.opacity = 0;
   }
-  if (myPreloader.style.opacity > 0) {
-    myPreloader.style.opacity -= 0.1;
-    mainstuff.style.display = "in";
-    //mainstuff.style.opacity += 0.1;
+  if (preloader.style.opacity > 0) {
+    preloader.style.opacity -= 0.1;
+    postload.style.display = "in";
+    //postload.style.opacity += 0.1;
   } else {
     clearInterval(fadeOutEffect);
-    //myPreloader.style.display = "none";
-    myPreloader.remove();
-    mainstuff.style.opacity = 1;
+    //preloader.style.display = "none";
+    preloader.remove();
+    postload.style.opacity = 1;
     thebody.style.setProperty("overflow-y", "unset");
-    mainstuff.style.pointerEvents = "auto";
+    postload.style.pointerEvents = "auto";
   }
 }, 300);
 
@@ -92,14 +92,7 @@ cal.paint(
       max: new Date("2022-12-31"),
       timezone: "utc",
     },
-    /*
-    data: {
-      source: "My_NYPD_Shooting_Incident_Data__Historic.csv",
-      type: "csv",
-      x: "Date",
-      y: (d) => +d["Count"],
-    },
-*/
+
     data: {
       source: "DatesIncidents.csv",
       type: "csv",
@@ -130,7 +123,7 @@ cal.paint(
         },
       },
     },
-
+    /* 
     legend: {
       show: true,
       label: "Shootings",
@@ -139,6 +132,7 @@ cal.paint(
       marginRight: 10,
       dynamicDimension: false,
     },
+  */
     verticalOrientation: true,
     subDomain: {
       dynamicDimension: true,
@@ -210,7 +204,9 @@ const myMap = L.map("map", {
   //center: [40.662857, -73.969917],
   center: [40.7061, -73.9969],
   zoomSnap: 0.25,
+  zoomDelta: 0.75,
   zoom: 10.75,
+  minZoom: 10.5,
   scrollWheelZoom: false,
   touchZoomRotate: true,
 });
@@ -255,72 +251,47 @@ function MarkersFirstLoad() {
     collapsed: false,
   });
 
-  const MassGet = $.getJSON("NewAllShoot.geojson", function (json) {
+  const MassGet = $.getJSON("AllShoot.geojson", function (json) {
     //start Rmass
+
     let Rmass = L.geoJson(json, {
       pointToLayer: function (feature, latlng) {
-        let ismurd = feature.properties.MurderF === "TRUE";
-        //mass only start 1
-        if (feature.properties.Mass === "TRUE") {
-          //mass only end 1
+        classSet = "";
+        Mtrue = parseInt(feature.properties.Mtrue);
+        Mfalse = parseInt(feature.properties.Mfalse);
+        if (Math.max(Mtrue, Mfalse) < 4) {
+          classSet = "blinking";
 
-          //If the count of victims doesn't appear to be duplicated
-          //OR even if it's duplicated, it would be considered mass after it's corrected
-          if (
-            feature.properties.Deaths == 0 ||
-            feature.properties.Deaths == feature.properties.Victims ||
-            feature.properties.Deaths > 3
-          ) {
-            //remove above and use below after changing geojson source to:
-            //mass = victims + death >=4
-            //victims = count of murder false
-            //deaths = count of murder true
-            /*
-
-  if (feature.properties.Deaths + feature.properties.Victims >= 4) {
-          if (
-            max(feature.properties.Deaths, feature.properties.Victims) <= 4
-          )
-    */
-
-            //if (!MurderOnly || (MurderOnly && ismurd)) {
-            //return L.circleMarker(latlng, {
-            return L.circle(latlng, {
-              radius: 150,
-              fillColor: "blue",
-              color: "yellow",
-              weight: 0.3,
-              opacity: 1,
-              fillOpacity: 0.5,
-            });
-          }
-
-          //If the count of victims DOES appear to be duplicated
-          //given the previous conditional, this also means they wouldn't be considered mass
-          else {
-            //return L.circleMarker(latlng, {
-            return L.circle(latlng, {
-              radius: 150,
-              fillColor: "blue",
-              color: "yellow",
-              weight: 0.3,
-              opacity: 1,
-              fillOpacity: 0.5,
-              className: "blinking",
-            });
+          if (feature.properties.locCountOrig == 1) {
+            topSet = " onTop";
           }
         }
+
+        //If the count of victims doesn't appear to be duplicated
+        //OR even if it's duplicated, it would be considered mass after it's corrected
+
+        //If the count of victims DOES appear to be duplicated
+        //given the previous conditional, this also means they wouldn't be considered mass
+
+        //return L.circleMarker(latlng, {
+        return L.circle(latlng, {
+          radius: 125,
+          fillColor: "blue",
+          color: "yellow",
+          weight: 0.3,
+          opacity: 1,
+          fillOpacity: 0.75,
+          // className: "blinking",
+          className: classSet + topSet,
+        });
       },
 
       onEachFeature: function (feature, Rmass) {
         let truecount;
         let time12;
         let timeAP;
-        if (feature.properties.Deaths == 0) {
-          truecount = feature.properties.Victims;
-        } else {
-          truecount = feature.properties.Deaths;
-        }
+        truecount = Math.max(Mtrue, Mfalse);
+
         time12 =
           1 +
           ((parseInt(feature.properties.OCCUR_TIME.slice(0, 2)) + 11) % 12) +
@@ -347,7 +318,7 @@ function MarkersFirstLoad() {
             // feature.properties.OCCUR_TIME.slice(0, -3) +
             "<br>" +
             "Data: " +
-            feature.properties.Victims +
+            (Mtrue + Mfalse) +
             " victims" +
             "<br>" +
             "Analysis: " +
@@ -401,21 +372,6 @@ function MarkersFirstLoad() {
 }
 
 //TOGGLE LAYERS
-
-function ToggleMurder() {
-  let hideStuff = document.querySelectorAll(".blinking");
-
-  MurderOnly = !MurderOnly;
-  hideStuff.forEach((group) => {
-    if (MurderOnly) {
-      group.classList.add("hide");
-      //alert("unhide");
-    } else {
-      group.classList.remove("hide");
-      //alert("hide");
-    }
-  });
-}
 
 /*
 let tabplus = document.querySelector("#toggler");
