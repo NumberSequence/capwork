@@ -1,15 +1,7 @@
-//START
-//FROM
-//TOP
+//RESET PAGE TO TOP
 history.scrollRestoration = "manual";
-//END
-//FROM
-//TOP
 
-//START
-//PAGE
-//WAIT
-
+//WAIT FOR PAGE TO LOAD
 const preloader = document.querySelector(".preloader");
 const postload = document.querySelector(".postload");
 const thebody = document.querySelector("body");
@@ -17,16 +9,12 @@ preloader.style.transform = "scale(1)";
 const fadeOut = setInterval(() => {
   if (!preloader.style.opacity) {
     preloader.style.opacity = 1;
-    //preloader.style.setProperty("background-size", "100vw 100vh");
-    //  postload.style.opacity = 0;
   }
   if (preloader.style.opacity > 0) {
     preloader.style.opacity -= 0.1;
     postload.style.display = "in";
-    //postload.style.opacity += 0.1;
   } else {
     clearInterval(fadeOut);
-    //preloader.style.display = "none";
     preloader.remove();
     postload.style.opacity = 1;
     thebody.style.setProperty("overflow-y", "unset");
@@ -35,22 +23,14 @@ const fadeOut = setInterval(() => {
 }, 300);
 
 window.addEventListener("load", () => fadeOut);
-//END
-//PAGE
-//WAIT
 
-//START
-//CALENDAR
-//HEATMAP
-
+//CALENDAR HEATMAP
 let vh = window.innerHeight;
 let vw = window.innerWidth;
 
 const weekDaysTemplate = (DateHelper) => ({
   name: "weekday",
   parent: "day",
-  //rowsCount: () => 7,
-  //columnsCount: () => 28,
   mapping: (startTimestamp, endTimestamp) => {
     let weekNumber = 0;
     let x = -1;
@@ -105,7 +85,6 @@ cal.paint(
       gutter: 0,
       type: "year",
       label: {
-        //rotate: "left",
         position: "left",
         textAlign: "middle",
         offset: {
@@ -123,21 +102,12 @@ cal.paint(
         },
       },
     },
-    /* 
-    legend: {
-      show: true,
-      label: "Shootings",
-      width: 150,
-      marginLeft: 10,
-      marginRight: 10,
-      dynamicDimension: false,
-    },
-  */
+
     verticalOrientation: true,
     subDomain: {
       dynamicDimension: true,
-      width: vw / 56, //20,
-      height: vh / 119, //5,
+      width: vw / 56,
+      height: vh / 119,
       gutter: 0,
       type: "day",
     },
@@ -148,8 +118,6 @@ cal.paint(
         scheme: "Blues",
       },
     },
-
-    // itemSelector: "#ex-stock",
   },
   [
     [
@@ -184,24 +152,14 @@ window.onresize = function () {
   vw = window.innerWidth;
   cal.paint({
     subDomain: {
-      //width: 40,
-      //height: 5,
-      width: vw / 56, //20,
-      height: vh / 119, //5,
+      width: vw / 56,
+      height: vh / 119,
     },
   });
 };
 
-//END
-//CALENDAR
-//HEATMAP
-
-//START
-//LEAFLET
-//MAP
-
+//LEAFLET MAP
 const myMap = L.map("map", {
-  //center: [40.662857, -73.969917],
   center: [40.7061, -73.9969],
   zoomSnap: 0.25,
   zoomDelta: 0.75,
@@ -211,12 +169,8 @@ const myMap = L.map("map", {
   touchZoomRotate: true,
 });
 
-//let InitialLoadLayer;
 let Rmass;
-
 let controlLayers;
-
-// BASE MAP
 
 const basemapStreets = L.tileLayer(
   "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
@@ -234,8 +188,6 @@ function MarkersFirstLoad() {
   });
 
   const MassGet = $.getJSON("AllShoot.geojson", function (json) {
-    //start Rmass
-
     let Rmass = L.geoJson(json, {
       pointToLayer: function (feature, latlng) {
         classSet = "";
@@ -249,13 +201,6 @@ function MarkersFirstLoad() {
           }
         }
 
-        //If the count of victims doesn't appear to be duplicated
-        //OR even if it's duplicated, it would be considered mass after it's corrected
-
-        //If the count of victims DOES appear to be duplicated
-        //given the previous conditional, this also means they wouldn't be considered mass
-
-        //return L.circleMarker(latlng, {
         return L.circle(latlng, {
           radius: 125,
           fillColor: "blue",
@@ -295,8 +240,6 @@ function MarkersFirstLoad() {
             "Time: " +
             time12 +
             timeAP +
-            // ": " +
-            // feature.properties.OCCUR_TIME.slice(0, -3) +
             "<br>" +
             "Data: " +
             (Mtrue + Mfalse) +
@@ -315,20 +258,9 @@ function MarkersFirstLoad() {
       },
     });
 
-    //cluster Start 1
-    // L.markerClusterGroup.layerSupport().addTo(myMap).checkIn(Rmass);
-    //cluster End 1
-    //end Rmass
-
-    //Rmass.addTo(myMap);
-    //myMap.addControl(Rmass);
-    // controlLayers.addOverlay(Rmass, "ThisIsSomething");
-
     sliderControl = L.control.sliderControl({
       position: "topleft",
       layer: Rmass,
-      //layer: layerGroup,
-      //layer: Amass,
       timeAttribute: "OCCUR_DATE",
       tracksLayer: false,
       showAllOnStart: true,
@@ -337,16 +269,13 @@ function MarkersFirstLoad() {
     });
 
     myMap.addControl(sliderControl);
-    //controlLayers.addOverlay(MassGet, "ThisIsSomething");
-
-    //  myMap.addControl(controlLayers);
     sliderControl.startSlider();
   });
 }
 
 MarkersFirstLoad();
 
-//start disable scroll-by zooming
+//DISABLE SCROLL-BY ZOOMING
 myMap.on("click", function () {
   if (myMap.scrollWheelZoom.enabled()) {
     myMap.scrollWheelZoom.disable();
@@ -354,9 +283,8 @@ myMap.on("click", function () {
     myMap.scrollWheelZoom.enable();
   }
 });
-//end disable scroll-by zooming
 
-//start relocate slider
+//RELOCATE SLIDER
 let moveit = function () {
   sliderMove = document.querySelector(".slider.leaflet-control");
   sliderPut = document.getElementById("mapcontslider");
@@ -369,7 +297,6 @@ let moveit = function () {
 
 var target = document.getElementById("map");
 console.log("it");
-//config not here
 let happened = 0;
 var observer = new MutationObserver(function (mutations) {
   var existing = document.getElementById("slider-current");
@@ -398,18 +325,8 @@ var config = {
 };
 
 observer.observe(target, config);
-//end relocate slider
 
-//END
-//LEAFLET
-//MAP
-
-//console.log(document.getElementById("mapcont"));
-
-//START
-//VIDEO
-//RESIZE
-
+//RESIZE VIDEOS
 let baseZ = 1;
 var dynVid = document.querySelectorAll(".dynVid");
 dynVid.forEach((group) => {
@@ -417,15 +334,9 @@ dynVid.forEach((group) => {
     baseZ++;
     group.style.width = "55vw";
     group.style.zIndex = baseZ;
-    // console.log(baseZ);
   };
 
   group.onpause = function () {
     group.style.width = "25vw";
-    // console.log(baseZ);
   };
 });
-
-//END
-//VIDEO
-//RESIZE
