@@ -109,14 +109,14 @@ img{
 #wrapup{
   display:inline-block;
   width:100vw;
-  min-height:10vh;
+  min-height:5vh;
   padding-top:0;
   margin-top:0;
   text-align:center;
   background-image: 
       radial-gradient(farthest-side at 100vw 0vw, #778899, #7788992c 20% , transparent),            
       radial-gradient(farthest-side at 0vw 0vw, #778899, #7788992c 20%,  transparent);
-  padding-bottom: 10vh;
+  padding-bottom: 2vh;
   z-index:2;
 }
 
@@ -133,10 +133,7 @@ img{
   background-image:linear-gradient(to bottom, #ffffff, transparent)
 }
 
-.chart {
-  background: #fff;
-  margin: 5px;
-}
+
 
 .sitemain {
   margin-left: 10%;
@@ -195,10 +192,6 @@ img{
 }
 
 
-h1 {
-    font-style: bold;
-    font-size: 1.1em;
-}
 
 h2 {
     font-style: bold;
@@ -207,41 +200,30 @@ h2 {
     text-align: center;
     font-family:'Yu Gothic';
     margin-bottom:0;
-}
+  }
  
-h3 {
-  font-family:'Yu Gothic';
-  font-size: 20px;
-  text-shadow: 0 0 5px #ffffff;
-  margin-top:0;
-  font-style:normal;
-  font-weight: normal;
-  text-align: center;}
-
-  h4 {
+h4 {
     font-family:'Yu Gothic';
     font-size: 20px;
     text-shadow: 0 0 5px #ffffff;
     margin-top:0;
     font-style:normal;
     font-weight: bolder;
-    text-align: center;}
+    text-align: center;
+  }
   
 
 .selection {
     display: inline-block;
-       width: 20%; 
-       padding-left: 5%;
-       padding-top: 3px;
-       padding-bottom: 3px;
-       text-align:center;
-}
+    width: 20%; 
+    padding-left: 5%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align:center;
+      }
 
 
-
-
-
-#exvids {
+.exvids {
 position:relative;
   text-align: center;
   min-height:18vw;
@@ -267,18 +249,9 @@ video{
   z-index:1;
 }
 
-
-.bdayvid{
-  margin:auto;
-  text-align:center;
-  height:30vh;
-  max-height:30vh;
-}
-
 #vid3 {
-  position: relative !important;
-  display:inline-block !important;
-  margin:auto !important;
+  position: absolute;
+  transform: translate(-50%, 0%);
   z-index:1;
 }
 
@@ -287,6 +260,10 @@ video{
 }
 
 del{display:none;}
+
+.hoverable {
+  cursor: pointer;
+}
 
 .hoverable img.showme{
   visibility:hidden;
@@ -313,7 +290,7 @@ del{display:none;}
   font-weight: 100;
   visibility: hidden;
   width:auto;
-  background-color: rgba(119, 136, 153, 0.582);
+  background-color: rgba(119, 136, 153, 0.952);
   color: #fff;
   color:#7788992c;
   text-shadow: 0 0 1px #ffffff;
@@ -333,49 +310,30 @@ del{display:none;}
   visibility:visible;
   opacity: 1;   
 }
-  .mass {
+
+.mass {
     background-color: blue;
     opacity: .4;
   }
-
-  .murder {
-      background-color: orange;
-      opacity: .4;
-  }
-
   
-  .date {
+.date {
     background-color: gray;
     opacity: .4;
 }
 
 
-  .selector.mass {
-    outline-color: black; 
-  }
-  
-  
-  input:focus + .selector {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .selector:before {
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    transform: translateX(20px);
-  }
   
 #mapcont{overflow:visible !important;
   font-size:16px;
 }
 
-  #map {
+#map {
     position: relative;
     margin: 75px auto auto;  
     height: 80vh;
     width: 60vw;
     z-index: 1;
-  }
+}
   
 #mapcontslider{
   min-width: 60vw;
@@ -393,15 +351,15 @@ del{display:none;}
 }
 
 .slider.leaflet-control{
- background:none;
- width:20% !important;
- height: 200% !important;
- position:relative;
- top:-0px;
- overflow:visible;
- left:0px;
- margin-left:40%;
- display:inline-block;
+  background:none;
+  width:20% !important;
+  height: 200% !important;
+  position:relative;
+  top:-0px;
+  overflow:visible;
+  left:0px;
+  margin-left:40%;
+  display:inline-block;
 }
 
 
@@ -421,7 +379,7 @@ del{display:none;}
 }
 
 #slider-min,#slider-max{
-display:none
+  display:none
 }
 
 #leaflet-slider{
@@ -439,8 +397,8 @@ display:none
   text-shadow: 0px 0px 5px white;
   font-size: 16px !important;
   text-align:center;
- margin:auto;
- display:inline-block;
+  margin:auto;
+  display:inline-block;
   top: 30px;
   width: 100%;
 }
